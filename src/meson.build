@@ -53,6 +53,6 @@ pkgconf.generate(
   filebase: 'libpkgstate-posix',
   description: 'POSIX immutable-generation storage for libpkgstate',
   subdirs: '.',
-  requires: [libpkgstate_dep],
+  requires: ['libpkgstate >= 3.0.0'],
   requires_private: [libcrypto_dep],
 )

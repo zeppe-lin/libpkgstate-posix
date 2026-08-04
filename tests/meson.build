@@ -34,6 +34,15 @@ if get_option('tests').allowed()
   endforeach
   test('contract style', sh, args: [join_paths(meson.current_source_dir(), 'contracts/check_style.sh'), meson.project_source_root(), meson.project_build_root()])
 
+  test(
+    'pkgconfig-metadata',
+    sh,
+    args: [
+      join_paths(meson.current_source_dir(), 'check_pkgconfig_metadata.sh'),
+      meson.project_build_root(),
+    ],
+  )
+
   if get_option('tools').allowed()
     fixture = executable('pkgstate-check-fixture', 'pkgstate_check_fixture.cpp', dependencies: libpkgstate_posix_dep)
     test('exercise read-only generation diagnostics', sh, args: [join_paths(meson.current_source_dir(), 'pkgstate_check_cli_test.sh'), pkgstate_check_tool, fixture])
