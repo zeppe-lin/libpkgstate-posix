@@ -10,23 +10,15 @@
 
 #include <libpkgstate-posix/export.h>
 
-#include <cstdint>
 #include <filesystem>
 #include <memory>
-#include <string_view>
 
 #include <libpkgstate/canonical_store.h>
+#include <libpkgstate/generation_codec.h>
 #include <libpkgstate/snapshot.h>
 #include <libpkgstate/state_target_binding.h>
 
 namespace pkgstate {
-
-/*! \brief Current canonical generation storage-format version. */
-inline constexpr std::uint16_t canonical_generation_storage_version = 3;
-
-/*! \brief Receipt-visible canonical generation storage-format identifier. */
-inline constexpr std::string_view canonical_generation_storage_format =
-    "libpkgstate-generation-v3";
 
 /*!
  * \brief Canonical backend using immutable generations and atomic selection.

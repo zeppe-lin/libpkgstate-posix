@@ -3,7 +3,7 @@
 
 #include <libpkgstate-posix/canonical_generation_store.h>
 
-#include "generation_codec.h"
+#include <libpkgstate/generation_codec.h>
 
 #include <algorithm>
 #include <atomic>
@@ -358,7 +358,7 @@ read_binding_locked(int root)
                                      "canonical store binding");
   if (!existing)
     return std::nullopt;
-  return detail::decode_generation_binding(as_string_view(*existing));
+  return decode_generation_binding(as_string_view(*existing));
 }
 
 void
@@ -426,7 +426,7 @@ read_generation_at(int generations,
                                   maximum_generation_size,
                                   false,
                                   "canonical generation snapshot");
-  snapshot result = detail::decode_generation_snapshot(as_string_view(*bytes));
+  snapshot result = decode_generation_snapshot(as_string_view(*bytes));
   if (result.target_binding() != expected_binding)
     throw store_error("selected generation target binding is inconsistent");
   if (result.identity() != selected)
@@ -563,7 +563,7 @@ validate_existing_generation(int generations,
     throw store_error("canonical generation identity collision or corruption");
 
   snapshot decoded =
-      detail::decode_generation_snapshot(as_string_view(*existing));
+      decode_generation_snapshot(as_string_view(*existing));
   if (decoded.identity() != resulting.identity())
     throw store_error("existing canonical generation is semantically corrupt");
 }
@@ -703,7 +703,7 @@ public:
       throw store_error("canonical generation publication target mismatch");
 
     const std::vector<std::uint8_t> encoded =
-        detail::encode_generation_snapshot(resulting_snapshot);
+        encode_generation_snapshot(resulting_snapshot);
     const auto evidence = state_publication_evidence_identity::from_sha256(
         sha256_bytes(encoded));
     const std::vector<state_publication_evidence_identity> evidence_set = {
@@ -901,7 +901,7 @@ canonical_generation_store::initialize()
   if (!selector)
   {
     const std::vector<std::uint8_t> encoded =
-        detail::encode_generation_snapshot(empty);
+        encode_generation_snapshot(empty);
     unique_fd generations = open_directory_at(
         root.get(),
         generations_directory,
@@ -948,7 +948,7 @@ canonical_generation_store::initialize()
   write_atomic_metadata(
       root.get(),
       binding_file,
-      detail::encode_generation_binding(target_binding_));
+      encode_generation_binding(target_binding_));
   static_cast<void>(read_snapshot_locked(root.get(), target_binding_));
   synchronize_directory(root.get(), "synchronize canonical store layout");
 }

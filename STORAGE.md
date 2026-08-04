@@ -15,8 +15,10 @@ STORE/
 `binding` prevents a pathname from being reused as authority for a different
 managed target, root view, backend, state store, or publication domain.
 
-The `snapshot` record is a canonical length-delimited binary encoding of the
-complete native snapshot, including source-bound native build provenance,
+The `binding` and `snapshot` bytes are emitted and validated by the
+state-owned `<libpkgstate/generation_codec.h>` protocol. The snapshot is a
+canonical length-delimited encoding of the complete native state, including
+source-bound native build provenance,
 complete installed object metadata, and hard-link topology retained by each
 receipt. Every state-owned identity is recomputed while reading. External
 identities are decoded as typed references and retained exactly.

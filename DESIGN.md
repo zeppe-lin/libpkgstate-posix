@@ -6,10 +6,15 @@ The provider implements `pkgstate::canonical_store`; it does not override its no
 
 ## Mechanism
 
-One store directory is durably bound to one `state_target_binding`. Complete snapshots are encoded into immutable generation directories. A current selector names the authoritative generation. Reads take a non-blocking shared publication lock; compare-and-publish takes a non-blocking exclusive lock. New generation bytes and directory metadata are synchronized before selector replacement is exposed and synchronized.
+One store directory is durably bound to one `state_target_binding`. Complete snapshots are encoded by the state-owned generation-v3 codec and persisted in immutable generation directories. A current selector names the authoritative generation. Reads take a non-blocking shared publication lock; compare-and-publish takes a non-blocking exclusive lock. New generation bytes and directory metadata are synchronized before selector replacement is exposed and synchronized.
 
 The provider never edits a selected generation, silently rebases a request, imports another format, repairs missing authority, waits for locks, or claims target-filesystem/state atomicity.
 
 ## Placement
 
-The generation-v3 codec and filesystem mechanism stay together because the codec is private to this exact storage provider. State-owned publication evidence codecs remain in `libpkgstate`; foreign source/build/plan/apply translations remain in their independent adapters.
+Canonical binding and snapshot bytes are state-domain protocol and remain in
+`libpkgstate`. Filesystem paths, descriptors, locks, immutable directories,
+selector replacement, fsync ordering, recovery refusal, and diagnostics are
+provider mechanism and remain here. This repository consumes the core codec and
+contains no competing copy. Foreign source/build/plan/apply translations remain
+in their independent adapters.

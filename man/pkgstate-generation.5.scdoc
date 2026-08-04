@@ -17,7 +17,8 @@ A canonical generation store contains:
 *generations/*
 	Complete immutable generation directories.
 
-Each generation contains one canonical binary snapshot record. The format stores
+Each generation contains one canonical binary snapshot record encoded by
+*pkgstate_generation_codec*(3). The format stores
 all package source records, installed control, installation receipts, complete
 recorded object metadata, manifests, publication references, and target binding
 required to reconstruct the exact native snapshot and verify every state-owned
@@ -44,4 +45,5 @@ mismatches, trailing data, and selector traversal.
 
 # SEE ALSO
 
-*pkgstate_canonical_generation_store*(3), *pkgstate-check*(1)
+*pkgstate_generation_codec*(3), *pkgstate_canonical_generation_store*(3),
+*pkgstate-check*(1)

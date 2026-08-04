@@ -15,7 +15,7 @@ export_script = configure_file(
 
 libpkgstate_posix = library(
   'pkgstate-posix',
-  ['canonical_generation_store.cpp', 'generation_codec.cpp'],
+  ['canonical_generation_store.cpp'],
   include_directories: [public_inc, private_inc],
   dependencies: [libpkgstate_dep, libcrypto_dep],
   cpp_args: visibility_cpp_args + ['-DPKGSTATE_POSIX_BUILDING_LIBRARY', '-D_FILE_OFFSET_BITS=64'],
