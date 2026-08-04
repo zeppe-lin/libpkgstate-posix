@@ -43,6 +43,18 @@ The optional `pkgstate-check` client is built by default and installed only with
 
 The 3.0 repository was extracted from the untagged `libpkgstate` 3.0 refinement after `libpkgstate` 2.5.1. The library preserves the generation-v3 storage protocol and uses SONAME 3. Release `libpkgstate` 3.0 before this provider.
 
+## Documentation
+
+- `DESIGN.md` — provider invariants and refusal boundaries;
+- `STORAGE.md` — immutable-generation layout and durability protocol;
+- `TESTING.md` — qualification matrix;
+- `docs/architecture.md` — owner/provider placement;
+- `docs/abi.md` — ABI and pkg-config policy;
+- `man/libpkgstate-posix.3.scdoc` — installed provider overview;
+- `man/pkgstate_canonical_generation_store.3.scdoc` — concrete class contract;
+- `man/pkgstate-generation.5.scdoc` — generation-v3 storage format; and
+- `man/pkgstate-check.1.scdoc` — read-only diagnostic client.
+
 ## License
 
 GPL-3.0-or-later. See `COPYING` and `COPYRIGHT`.

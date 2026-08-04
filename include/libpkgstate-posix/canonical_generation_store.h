@@ -18,6 +18,7 @@
 #include <libpkgstate/snapshot.h>
 #include <libpkgstate/state_target_binding.h>
 
+/*! \brief POSIX mechanism providers for canonical installed state. */
 namespace pkgstate::posix {
 
 /*!
@@ -61,7 +62,9 @@ public:
   open_existing(std::filesystem::path root,
                 state_target_binding target_binding);
 
+  /*! \brief Store handles are not copyable. */
   canonical_generation_store(const canonical_generation_store&) = delete;
+  /*! \brief Store handles are not copy-assignable. */
   canonical_generation_store&
   operator=(const canonical_generation_store&) = delete;
 
