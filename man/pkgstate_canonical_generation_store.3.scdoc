@@ -6,7 +6,7 @@ pkgstate_canonical_generation_store - immutable generation backend
 
 # SYNOPSIS
 
-*#include <libpkgstate/canonical_generation_store.h>*
+*#include <libpkgstate-posix/canonical_generation_store.h>*
 
 # DESCRIPTION
 

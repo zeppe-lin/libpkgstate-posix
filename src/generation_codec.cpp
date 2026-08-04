@@ -3,7 +3,7 @@
 
 #include "generation_codec.h"
 
-#include <libpkgstate/canonical_generation_store.h>
+#include <libpkgstate-posix/canonical_generation_store.h>
 
 #include <algorithm>
 #include <array>

@@ -4,6 +4,8 @@
 #include "temp_directory.h"
 #include "test.h"
 
+#include <libpkgstate-posix/canonical_generation_store.h>
+
 #include <filesystem>
 
 int main()

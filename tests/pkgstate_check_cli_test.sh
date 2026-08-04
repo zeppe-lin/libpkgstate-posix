@@ -91,5 +91,5 @@ test ! -e "$missing" || fail 'diagnostics initialized an absent store'
 grep -F 'never initializes a store' "$output" >/dev/null ||
   fail 'help omits read-only boundary'
 "$pkgstate_check" --version > "$output" 2> "$error" || fail 'version failed'
-grep -E '^pkgstate-check \(libpkgstate\) [^[:space:]]+$' "$output" >/dev/null ||
+grep -E '^pkgstate-check \(libpkgstate-posix\) [^[:space:]]+$' "$output" >/dev/null ||
   fail 'version output is malformed'

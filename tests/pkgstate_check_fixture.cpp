@@ -3,6 +3,8 @@
 
 #include "native_fixture.h"
 
+#include <libpkgstate-posix/canonical_generation_store.h>
+
 #include <cstdlib>
 #include <filesystem>
 #include <iostream>

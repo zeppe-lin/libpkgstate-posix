@@ -16,7 +16,7 @@
 
 #include <getopt.h>
 
-#include <libpkgstate/canonical_generation_store.h>
+#include <libpkgstate-posix/canonical_generation_store.h>
 #include <libpkgstate/error.h>
 
 #ifndef PKGSTATE_VERSION
@@ -72,7 +72,7 @@ repairs state, imports historical databases, or reconstructs missing control.
 
 void print_version()
 {
-  std::cout << "pkgstate-check (libpkgstate) " << PKGSTATE_VERSION << '\n';
+  std::cout << "pkgstate-check (libpkgstate-posix) " << PKGSTATE_VERSION << '\n';
 }
 
 options parse_options(int argc, char** argv)

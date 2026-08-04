@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2026 Alexandr Savca
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include <libpkgstate/canonical_generation_store.h>
+#include <libpkgstate-posix/canonical_generation_store.h>
 
 #include "generation_codec.h"
 

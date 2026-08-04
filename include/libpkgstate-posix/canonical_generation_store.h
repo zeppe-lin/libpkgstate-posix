@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <libpkgstate/export.h>
+#include <libpkgstate-posix/export.h>
 
 #include <cstdint>
 #include <filesystem>
@@ -41,7 +41,7 @@ inline constexpr std::string_view canonical_generation_storage_format =
  * durably binds the directory to exactly one state_target_binding. The backend
  * knows only the native generation format and never imports another database.
  */
-class PKGSTATE_API canonical_generation_store final : public canonical_store {
+class PKGSTATE_POSIX_API canonical_generation_store final : public canonical_store {
 public:
   /*!
    * \brief Open or initialize one canonical generation store.
