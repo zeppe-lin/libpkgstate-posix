@@ -10,3 +10,7 @@ grep -R -E '#include <(fcntl|unistd|sys/|linux/)' "$root/src" >/dev/null || fail
 test ! -e "$root/src/generation_codec.cpp" || fail 'provider duplicates state-owned generation codec'
 test ! -e "$root/src/generation_codec.h" || fail 'provider duplicates state-owned generation codec header'
 grep -F '<libpkgstate/generation_codec.h>' "$root/include/libpkgstate-posix/canonical_generation_store.h" >/dev/null || fail 'provider does not consume state codec'
+
+grep -F 'namespace pkgstate::posix' \
+  "$root/include/libpkgstate-posix/canonical_generation_store.h" >/dev/null ||
+  fail 'provider API is not namespace-isolated'

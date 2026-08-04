@@ -18,7 +18,7 @@
 #include <libpkgstate/snapshot.h>
 #include <libpkgstate/state_target_binding.h>
 
-namespace pkgstate {
+namespace pkgstate::posix {
 
 /*!
  * \brief Canonical backend using immutable generations and atomic selection.
@@ -43,6 +43,9 @@ public:
    */
   canonical_generation_store(std::filesystem::path root,
                              state_target_binding target_binding);
+
+  /*! \brief Destroy the provider-owned store handle. */
+  ~canonical_generation_store() override;
 
   /*!
    * \brief Open and validate an existing store without initializing it.
@@ -91,4 +94,4 @@ private:
   state_target_binding target_binding_;
 };
 
-} // namespace pkgstate
+} // namespace pkgstate::posix

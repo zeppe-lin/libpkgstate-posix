@@ -31,7 +31,7 @@
 
 #include <libpkgstate/error.h>
 
-namespace pkgstate {
+namespace pkgstate::posix {
 namespace {
 
 constexpr const char* binding_file = "binding";
@@ -798,6 +798,8 @@ canonical_generation_store::canonical_generation_store(
   initialize();
 }
 
+canonical_generation_store::~canonical_generation_store() = default;
+
 canonical_generation_store
 canonical_generation_store::open_existing(
     std::filesystem::path root,
@@ -954,4 +956,4 @@ canonical_generation_store::initialize()
 }
 
 
-} // namespace pkgstate
+} // namespace pkgstate::posix

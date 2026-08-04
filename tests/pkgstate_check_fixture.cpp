@@ -20,7 +20,7 @@ int main(int argc, char** argv)
   try
   {
     const pkgstate::state_target_binding target = native_fixture::target();
-    pkgstate::canonical_generation_store store(
+    pkgstate::posix::canonical_generation_store store(
         std::filesystem::path(argv[1]), target);
     const pkgstate::installed_package package = native_fixture::package(
         "base", 20, target);

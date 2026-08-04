@@ -10,7 +10,8 @@ pkgstate_canonical_generation_store - immutable generation backend
 
 # DESCRIPTION
 
-*canonical_generation_store* persists complete native snapshots in immutable
+*pkgstate::posix::canonical_generation_store* persists complete native
+snapshots in immutable
 generation directories. One current selector names the authoritative generation.
 The store directory is durably bound to exactly one *state_target_binding*.
 

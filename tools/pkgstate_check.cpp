@@ -158,8 +158,8 @@ pkgstate::state_target_binding parse_binding(const options& parsed)
 void inspect(const options& parsed)
 {
   const pkgstate::state_target_binding binding = parse_binding(parsed);
-  const pkgstate::canonical_generation_store store =
-      pkgstate::canonical_generation_store::open_existing(parsed.path,
+  const pkgstate::posix::canonical_generation_store store =
+      pkgstate::posix::canonical_generation_store::open_existing(parsed.path,
                                                            binding);
   const pkgstate::snapshot state = store.read();
 

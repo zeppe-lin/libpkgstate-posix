@@ -1,6 +1,8 @@
 # libpkgstate-posix
 
-`libpkgstate-posix` provides the concrete immutable-generation storage mechanism for `libpkgstate`.
+`libpkgstate-posix` provides
+`pkgstate::posix::canonical_generation_store`, the concrete
+immutable-generation storage mechanism for `libpkgstate`.
 
 ```text
 state_publication_request

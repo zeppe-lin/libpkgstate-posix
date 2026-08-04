@@ -24,7 +24,8 @@ or claim target-filesystem and state-store atomicity.
 
 # INTERFACE
 
-*canonical_generation_store* opens or initializes one target-bound store.
+*pkgstate::posix::canonical_generation_store* opens or initializes one
+target-bound store.
 *open_existing()* validates an existing store without creating or repairing it.
 The class implements *canonical_store* and therefore receives only the exact
 resulting snapshot derived by the non-virtual core publication sequence.
