@@ -34,3 +34,8 @@ grep -F 'libpkgstate.so.4' "$root/ci/audit-shared-boundary.sh" >/dev/null ||
   fail 'shared audit does not bind the state-owner SONAME'
 grep -F 'pkgstate-check' "$root/ci/qualify-installed.sh" >/dev/null ||
   fail 'installed reference tool is not qualified'
+
+grep -F 'html_docs: enabled' "$root/.github/workflows/ci.yml" >/dev/null || fail 'GCC shared HTML build is absent'
+grep -F 'pandoc' "$root/.github/workflows/ci.yml" >/dev/null || fail 'Pandoc qualification dependency is absent'
+grep -F -- '-Dhtml_docs=' "$root/.github/workflows/ci.yml" >/dev/null || fail 'HTML Meson feature is not configured'
+grep -F 'qualify-html-docs.sh' "$root/.github/workflows/ci.yml" >/dev/null || fail 'installed HTML qualification is absent'

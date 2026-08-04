@@ -1,0 +1,45 @@
+% LIBPKGSTATE-POSIX(3) libpkgstate-posix | Version 3.0.0
+
+<!-- Generated from libpkgstate-posix.3.scdoc; do not edit. -->
+
+
+# NAME
+
+libpkgstate-posix - POSIX immutable-generation storage for libpkgstate
+
+# SYNOPSIS
+
+**#include <libpkgstate-posix/libpkgstate-posix.h>**
+
+# DESCRIPTION
+
+**libpkgstate-posix** implements the abstract **libpkgstate** canonical-store
+contract with one descriptor-anchored immutable-generation filesystem backend.
+It owns store binding, publication locking, immutable generation publication,
+current-selector replacement, durability reporting, recovery refusal, and
+read-only store diagnostics. Canonical generation-v3 record encoding and
+validation are provided by **libpkgstate** and consumed without reinterpretation.
+
+The semantic **libpkgstate** owner retains stale comparison, result derivation,
+publication requests and receipts, and evidence codecs. This provider cannot
+reinterpret a request, silently rebase stale authority, construct package state,
+or claim target-filesystem and state-store atomicity.
+
+# INTERFACE
+
+**pkgstate::posix::canonical_generation_store** opens or initializes one
+target-bound store.
+**open_existing()** validates an existing store without creating or repairing it.
+The class implements **canonical_store** and therefore receives only the exact
+resulting snapshot derived by the non-virtual core publication sequence.
+
+# TOOLS
+
+**pkgstate-check**(1) is a read-only diagnostic client for this provider. It is
+built by default and installed only when **install_tools** is enabled.
+
+# SEE ALSO
+
+**libpkgstate**(3), **pkgstate_generation_codec**(3), **pkgstate_store**(3),
+**pkgstate_canonical_generation_store**(3), **pkgstate-generation**(5),
+**pkgstate-check**(1)

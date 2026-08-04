@@ -9,3 +9,8 @@ grep -F 'does not depend on this provider' "$root/docs/architecture.md" >/dev/nu
 grep -F 'state-owned generation codec' "$root/docs/architecture.md" >/dev/null || fail 'protocol ownership absent'
 python3 "$root/tools/check-public-documentation.py" \
   "$root" libpkgstate-posix libpkgstate-posix.h
+
+python3 "$root/tools/check-man-markdown.py" \
+  --root "$root" --project libpkgstate-posix --version 3.0.0
+python3 "$root/tools/check-html-manifest.py" \
+  --root "$root" --project libpkgstate-posix

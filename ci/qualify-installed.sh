@@ -106,17 +106,7 @@ esac
   exit 1
 }
 
-for document in \
-  README.md HISTORY.md DESIGN.md STORAGE.md TESTING.md CONTRIBUTING.md \
-  MAINTAINING.md architecture.md abi.md integration.md qualification.md \
-  code-style.md 3.0-extraction.md
-do
-  installed=$install_prefix/share/doc/libpkgstate-posix/$document
-  [ -s "$installed" ] || {
-    echo "installed documentation is absent: $document" >&2
-    exit 1
-  }
-done
+python3 ci/qualify-installed-documentation.py "$install_prefix" libpkgstate-posix
 
 for page in "$build_dir"/product/man/*.[1357]; do
   [ -e "$page" ] || continue

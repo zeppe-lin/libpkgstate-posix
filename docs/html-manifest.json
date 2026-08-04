@@ -1,0 +1,100 @@
+{
+  "project": "libpkgstate-posix",
+  "documents": [
+    {
+      "source": "README.md",
+      "output": "index.html",
+      "title": "libpkgstate-posix"
+    },
+    {
+      "source": "CONTRIBUTING.md",
+      "output": "contributing.html",
+      "title": "Contributing"
+    },
+    {
+      "source": "DESIGN.md",
+      "output": "design.html",
+      "title": "POSIX generation-store design"
+    },
+    {
+      "source": "HISTORY.md",
+      "output": "history.html",
+      "title": "History"
+    },
+    {
+      "source": "MAINTAINING.md",
+      "output": "maintaining.html",
+      "title": "Maintaining libpkgstate-posix"
+    },
+    {
+      "source": "STORAGE.md",
+      "output": "storage.html",
+      "title": "Native generation storage"
+    },
+    {
+      "source": "TESTING.md",
+      "output": "test-doctrine.html",
+      "title": "Qualification"
+    },
+    {
+      "source": "docs/abi.md",
+      "output": "abi.html",
+      "title": "ABI and metadata policy"
+    },
+    {
+      "source": "docs/architecture.md",
+      "output": "architecture.html",
+      "title": "Architecture"
+    },
+    {
+      "source": "docs/code-style.md",
+      "output": "code-style.html",
+      "title": "Code style"
+    },
+    {
+      "source": "docs/history/3.0-extraction.md",
+      "output": "history/3.0-extraction.html",
+      "title": "3.0 extraction"
+    },
+    {
+      "source": "docs/html.md",
+      "output": "html-documentation.html",
+      "title": "HTML documentation"
+    },
+    {
+      "source": "docs/integration.md",
+      "output": "integration.html",
+      "title": "Integration"
+    },
+    {
+      "source": "docs/man/libpkgstate-posix.3.md",
+      "output": "manual/libpkgstate-posix.3.html",
+      "title": "LIBPKGSTATE-POSIX(3) libpkgstate-posix"
+    },
+    {
+      "source": "docs/man/pkgstate-check.1.md",
+      "output": "manual/pkgstate-check.1.html",
+      "title": "PKGSTATE-CHECK(1) libpkgstate-posix"
+    },
+    {
+      "source": "docs/man/pkgstate-generation.5.md",
+      "output": "manual/pkgstate-generation.5.html",
+      "title": "PKGSTATE-GENERATION(5) libpkgstate-posix"
+    },
+    {
+      "source": "docs/man/pkgstate_canonical_generation_store.3.md",
+      "output": "manual/pkgstate_canonical_generation_store.3.html",
+      "title": "PKGSTATE_CANONICAL_GENERATION_STORE(3) libpkgstate-posix"
+    },
+    {
+      "source": "docs/manpage-markdown.md",
+      "output": "manpage-markdown.html",
+      "title": "Manual-page Markdown"
+    },
+    {
+      "source": "docs/qualification.md",
+      "output": "qualification.html",
+      "title": "Qualification details"
+    }
+  ]
+}
