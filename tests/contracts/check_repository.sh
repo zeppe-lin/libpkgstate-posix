@@ -8,6 +8,7 @@ for forbidden in include/libpkgstate src/canonical_store.cpp src/publication_cod
 for duplicated in src/generation_codec.cpp src/generation_codec.h; do test ! -e "$root/$duplicated" || fail "duplicated state protocol: $duplicated"; done
 
 test -x "$root/tools/check-public-documentation.py" || fail 'public documentation checker is absent'
+test -x "$root/tools/check-doxygen-contract.py" || fail 'Doxygen contract checker is absent'
 
 for tool in \
   build-html-docs.py check-html-docs.py install-html-docs.py \

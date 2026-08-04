@@ -57,6 +57,7 @@ public:
    *
    * This factory performs no directory creation, metadata publication,
    * generation selection, or recovery completion.
+  *  \return A validated move-only handle to the existing store.
    */
   [[nodiscard]] static canonical_generation_store
   open_existing(std::filesystem::path root,
@@ -68,18 +69,30 @@ public:
   canonical_generation_store&
   operator=(const canonical_generation_store&) = delete;
 
-  /*! \brief Return the configured store directory pathname. */
+  /*!
+   * \brief Return the configured store directory pathname.
+  *  \return The configured store directory pathname.
+   */
   [[nodiscard]] const std::filesystem::path& root_path() const noexcept;
 
-  /*! \brief Return the durable target binding owned by this store. */
+  /*!
+   * \brief Return the durable target binding owned by this store.
+  *  \return The durable target binding owned by this store.
+   */
   [[nodiscard]] const state_target_binding&
   target_binding() const noexcept;
 
-  /*! \brief Read and validate the currently selected complete snapshot. */
+  /*!
+   * \brief Read and validate the currently selected complete snapshot.
+  *  \return The currently selected complete snapshot.
+   */
   [[nodiscard]] snapshot read() const override;
 
 protected:
-  /*! \brief Lock the store exclusively and reread authoritative state. */
+  /*!
+   * \brief Lock the store exclusively and reread authoritative state.
+  *  \return An exclusive publication transaction bound to freshly reread state.
+   */
   [[nodiscard]] std::unique_ptr<canonical_publication_transaction>
   begin_publication() const override;
 
