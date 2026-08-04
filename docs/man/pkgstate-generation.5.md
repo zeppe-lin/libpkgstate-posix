@@ -29,9 +29,9 @@ identity.
 
 # VERSION
 
-The current format version is 3 and its public identifier is
-**libpkgstate-generation-v3**. Version 1 and version 2 are not interpreted as
-native version 3. Migration between storage versions belongs to a separate
+The current format version is 4 and its public identifier is
+**libpkgstate-generation-v4**. Versions 1, 2, and 3 are not interpreted as native version 4.
+Migration between storage versions belongs to a separate
 explicit tool.
 
 # DURABILITY

@@ -93,8 +93,7 @@ inline pkgstate::package_source_record source(
           pkgstate::architecture_reference("x86_64"),
           pkgstate::architecture_reference("x86_64")),
       std::move(profiles),
-      identity<pkgstate::source_recipe_identity>(seed + 2),
-      identity<pkgstate::source_snapshot_identity>(seed + 3));
+      identity<pkgstate::source_snapshot_identity>(seed + 2));
 }
 
 inline pkgstate::installed_object_metadata regular_object(

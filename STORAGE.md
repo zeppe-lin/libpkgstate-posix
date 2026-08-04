@@ -28,6 +28,7 @@ and synchronizing `current`. Readers reject selector traversal, malformed data,
 unknown versions and enum values, duplicate normalized values, identity
 mismatches, target mismatches, and trailing bytes.
 
-Current version: 3.
-Current receipt-visible identifier: `libpkgstate-generation-v3`.
-Generation-v1 and generation-v2 bytes are not reinterpreted as version 3.
+Current version: 4.
+Current receipt-visible identifier: `libpkgstate-generation-v4`.
+Generation-v1, generation-v2, and generation-v3 bytes are not reinterpreted
+as version 4.

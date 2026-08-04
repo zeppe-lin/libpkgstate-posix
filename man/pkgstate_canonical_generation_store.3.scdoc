@@ -28,7 +28,7 @@ receipt. Readers take a shared lock and decode the selected complete generation.
 
 # STORAGE FORMAT
 
-The current receipt-visible format is *libpkgstate-generation-v3*. On-disk
+The current receipt-visible format is *libpkgstate-generation-v4*. On-disk
 records are canonical length-delimited binary values. Unknown versions, invalid
 identities, inconsistent target bindings, and trailing data are rejected.
 
