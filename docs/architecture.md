@@ -6,4 +6,4 @@
 libpkgstate-posix -> libpkgstate
 ```
 
-`libpkgstate` must not depend on this provider. Controllers select and construct a provider at the composition root.
+`libpkgstate` does not depend on this provider. Controllers select and construct a provider at the composition root.
