@@ -3,6 +3,7 @@
 scdoc = find_program('scdoc', required: get_option('man_pages'))
 if scdoc.found()
   foreach page : [
+    ['libpkgstate-posix.3', '3'],
     ['pkgstate_canonical_generation_store.3', '3'],
     ['pkgstate-generation.5', '5'],
   ]
