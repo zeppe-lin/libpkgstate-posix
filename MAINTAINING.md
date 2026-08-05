@@ -12,4 +12,4 @@ Before tagging:
 8. lint manuals, run strict Doxygen, and stage-install documentation and the optional tool;
 9. replay the mailbox and compare Git trees.
 
-Generation-v3 bytes are a durable provider protocol. Any change requires explicit migration design and new compatibility qualification.
+Generation-v1 bytes are the durable provider protocol. Any change requires explicit migration design and new compatibility qualification.

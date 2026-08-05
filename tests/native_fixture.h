@@ -118,7 +118,6 @@ inline pkgstate::installed_control control(
       pkgstate::build_provenance(
           source_record.identity(),
           identity<pkgstate::build_request_identity>(seed + 4),
-          identity<pkgstate::source_material_set_identity>(seed + 5),
           identity<pkgstate::build_input_set_identity>(seed + 6),
           identity<pkgstate::environment_policy_identity>(seed + 7),
           identity<pkgstate::build_policy_identity>(seed + 8),
@@ -128,8 +127,9 @@ inline pkgstate::installed_control control(
           identity<pkgstate::artifact_content_identity>(seed + 12),
           identity<pkgstate::artifact_binding_identity>(seed + 13),
           identity<pkgstate::execution_evidence_identity>(seed + 14),
-          identity<pkgstate::artifact_image_identity>(seed + 15),
-          identity<pkgstate::artifact_inspection_identity>(seed + 16)));
+          identity<pkgstate::build_image_identity>(seed + 15),
+          identity<pkgstate::artifact_image_identity>(seed + 16),
+          identity<pkgstate::artifact_inspection_identity>(seed + 17)));
 }
 
 inline pkgstate::installation_receipt receipt(

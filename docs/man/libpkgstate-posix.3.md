@@ -17,7 +17,7 @@ libpkgstate-posix - POSIX immutable-generation storage for libpkgstate
 contract with one descriptor-anchored immutable-generation filesystem backend.
 It owns store binding, publication locking, immutable generation publication,
 current-selector replacement, durability reporting, recovery refusal, and
-read-only store diagnostics. Canonical generation-v4 record encoding and
+read-only store diagnostics. Canonical generation-v1 record encoding and
 validation are provided by **libpkgstate** and consumed without reinterpretation.
 
 The semantic **libpkgstate** owner retains stale comparison, result derivation,

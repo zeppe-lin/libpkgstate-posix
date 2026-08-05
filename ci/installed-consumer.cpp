@@ -3,6 +3,6 @@
 #include <libpkgstate-posix/libpkgstate-posix.h>
 int main()
 {
-  static_assert(pkgstate::canonical_generation_storage_version == 4);
-  return pkgstate::canonical_generation_storage_format == "libpkgstate-generation-v4" ? 0 : 1;
+  static_assert(pkgstate::canonical_generation_storage_version == 1);
+  return pkgstate::canonical_generation_storage_format == "libpkgstate-generation-v1" ? 0 : 1;
 }

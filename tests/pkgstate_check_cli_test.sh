@@ -42,7 +42,7 @@ snapshot_files "$canonical" > "$before"
   > "$output" 2> "$error" || fail 'native diagnostics failed'
 test ! -s "$error" || fail 'diagnostics wrote standard error'
 for line in \
-  'storage-format=libpkgstate-generation-v4' \
+  'storage-format=libpkgstate-generation-v1' \
   'packages=1' \
   'ownership-claims=2' \
   'owned-paths=2' \
