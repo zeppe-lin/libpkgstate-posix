@@ -29,8 +29,18 @@ if get_option('tests').allowed()
     )
   endif
 
+  libpkgstate_public_include = libpkgstate_dep.get_variable(
+    pkgconfig: 'includedir',
+  )
   foreach contract : ['architecture', 'abi', 'ci', 'documentation', 'extraction', 'release', 'repository']
-    test('contract ' + contract, sh, args: [join_paths(meson.current_source_dir(), 'contracts/check_' + contract + '.sh'), meson.project_source_root()])
+    contract_args = [
+      join_paths(meson.current_source_dir(), 'contracts/check_' + contract + '.sh'),
+      meson.project_source_root(),
+    ]
+    if contract == 'documentation'
+      contract_args += [libpkgstate_public_include]
+    endif
+    test('contract ' + contract, sh, args: contract_args)
   endforeach
   test('contract style', sh, args: [join_paths(meson.current_source_dir(), 'contracts/check_style.sh'), meson.project_source_root(), meson.project_build_root()])
 
