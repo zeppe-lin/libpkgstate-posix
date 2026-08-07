@@ -19,7 +19,7 @@ one durable target-bound canonical snapshot
 
 ## Authority
 
-`libpkgstate` owns installed-state values, stale-safe compare-and-publish semantics, publication requests and receipts, and durable evidence codecs. This repository owns one host mechanism: descriptor-anchored immutable generations, publication locking, durable selector replacement, recovery refusal, and read-only `pkgstate-check` diagnostics. Canonical generation-v1 binding and snapshot bytes are encoded and validated by `libpkgstate`; this provider persists them without reinterpretation.
+`libpkgstate` owns installed-state values, stale-safe compare-and-publish semantics, publication requests and receipts, and durable evidence codecs. This repository owns one host mechanism: descriptor-anchored immutable generations whose opened store authority survives pathname rename/replacement, publication locking, durable selector replacement, recovery refusal, and read-only `pkgstate-check` diagnostics. Canonical generation-v1 binding and snapshot bytes are encoded and validated by `libpkgstate`; this provider persists them without reinterpretation.
 
 It does not parse package sources, admit builds, inspect images, plan or apply operations, construct publication requests, reinterpret stale requests, repair state, import historical databases, or choose retry policy.
 

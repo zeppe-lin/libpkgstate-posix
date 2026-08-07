@@ -57,7 +57,7 @@ public:
    *
    * This factory performs no directory creation, metadata publication,
    * generation selection, or recovery completion.
-  *  \return A validated move-only handle to the existing store.
+   * \return A validated non-copyable handle to the existing store.
    */
   [[nodiscard]] static canonical_generation_store
   open_existing(std::filesystem::path root,
@@ -71,7 +71,11 @@ public:
 
   /*!
    * \brief Return the configured store directory pathname.
-  *  \return The configured store directory pathname.
+   *
+   * The pathname is diagnostic metadata only after construction. Store reads
+   * and publications remain anchored to the directory opened and validated by
+   * the constructor even if this pathname is later renamed or replaced.
+   * \return The originally configured store directory pathname.
    */
   [[nodiscard]] const std::filesystem::path& root_path() const noexcept;
 
@@ -104,10 +108,11 @@ private:
                              existing_store_tag);
 
   void initialize();
-  void validate_existing() const;
+  void validate_existing();
 
   std::filesystem::path root_;
   state_target_binding target_binding_;
+  int root_descriptor_ = -1;
 };
 
 } // namespace pkgstate::posix

@@ -2,8 +2,10 @@
 
 `libpkgstate-posix` is a mechanism provider for the abstract
 `pkgstate::canonical_store` contract. Its concrete API is isolated in the
-`pkgstate::posix` namespace. It owns descriptor-anchored generation storage and
-no package-management policy or state-record codec. The dependency arrow points
+`pkgstate::posix` namespace. It owns descriptor-anchored generation storage:
+the store handle retains the exact opened root, and later operations reopen
+authority relative to that descriptor instead of trusting the configured
+pathname again. It owns no package-management policy or state-record codec. The dependency arrow points
 inward:
 
 ```text

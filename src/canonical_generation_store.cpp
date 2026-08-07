@@ -81,6 +81,11 @@ public:
     return value_ != -1;
   }
 
+  [[nodiscard]] int release() noexcept
+  {
+    return std::exchange(value_, -1);
+  }
+
   void reset(int value = -1) noexcept
   {
     if (value_ != -1)
@@ -136,6 +141,14 @@ open_directory_at(int parent, const char* name, std::string_view label)
   if (descriptor == -1)
     throw_store_failure(label);
   return unique_fd(descriptor);
+}
+
+[[nodiscard]] unique_fd
+reopen_directory_authority(int directory, std::string_view label)
+{
+  if (directory == -1)
+    throw store_error(std::string(label) + ": store authority is closed");
+  return open_directory_at(directory, ".", label);
 }
 
 void
@@ -677,11 +690,11 @@ write_current_temporary(int root,
 class generation_publication_transaction final
     : public canonical_publication_transaction {
 public:
-  generation_publication_transaction(std::filesystem::path root,
+  generation_publication_transaction(int root_descriptor,
                                      state_target_binding binding)
-      : root_path_(std::move(root)),
-        binding_(std::move(binding)),
-        root_(open_directory(root_path_)),
+      : binding_(std::move(binding)),
+        root_(reopen_directory_authority(
+            root_descriptor, "reopen canonical publication authority")),
         current_(lock_and_read())
   {
   }
@@ -780,7 +793,6 @@ private:
     return read_snapshot_locked(root_.get(), binding_);
   }
 
-  std::filesystem::path root_path_;
   state_target_binding binding_;
   unique_fd root_;
   snapshot current_;
@@ -798,7 +810,11 @@ canonical_generation_store::canonical_generation_store(
   initialize();
 }
 
-canonical_generation_store::~canonical_generation_store() = default;
+canonical_generation_store::~canonical_generation_store()
+{
+  if (root_descriptor_ != -1)
+    static_cast<void>(::close(root_descriptor_));
+}
 
 canonical_generation_store
 canonical_generation_store::open_existing(
@@ -835,7 +851,8 @@ canonical_generation_store::target_binding() const noexcept
 snapshot
 canonical_generation_store::read() const
 {
-  unique_fd root = open_directory(root_);
+  unique_fd root = reopen_directory_authority(
+      root_descriptor_, "reopen canonical store read authority");
   lock_directory(root.get(), LOCK_SH, "acquire canonical store read lock");
   return read_snapshot_locked(root.get(), target_binding_);
 }
@@ -844,11 +861,11 @@ std::unique_ptr<canonical_publication_transaction>
 canonical_generation_store::begin_publication() const
 {
   return std::make_unique<generation_publication_transaction>(
-      root_, target_binding_);
+      root_descriptor_, target_binding_);
 }
 
 void
-canonical_generation_store::validate_existing() const
+canonical_generation_store::validate_existing()
 {
   if (root_.empty())
     throw store_error("canonical generation store path is empty");
@@ -858,6 +875,9 @@ canonical_generation_store::validate_existing() const
                  LOCK_SH,
                  "acquire canonical existing-store validation lock");
   static_cast<void>(read_snapshot_locked(root.get(), target_binding_));
+  unique_fd retained = reopen_directory_authority(
+      root.get(), "retain canonical existing-store authority");
+  root_descriptor_ = retained.release();
 }
 
 void
@@ -891,6 +911,9 @@ canonical_generation_store::initialize()
     static_cast<void>(
         read_selected_snapshot_locked(root.get(), target_binding_));
     synchronize_directory(root.get(), "synchronize canonical store layout");
+    unique_fd retained = reopen_directory_authority(
+        root.get(), "retain canonical store authority");
+    root_descriptor_ = retained.release();
     return;
   }
 
@@ -953,6 +976,9 @@ canonical_generation_store::initialize()
       encode_generation_binding(target_binding_));
   static_cast<void>(read_snapshot_locked(root.get(), target_binding_));
   synchronize_directory(root.get(), "synchronize canonical store layout");
+  unique_fd retained = reopen_directory_authority(
+      root.get(), "retain canonical store authority");
+  root_descriptor_ = retained.release();
 }
 
 
