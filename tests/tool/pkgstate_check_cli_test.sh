@@ -43,15 +43,15 @@ snapshot_files "$canonical" > "$before"
 test ! -s "$error" || fail 'diagnostics wrote standard error'
 for line in \
   'storage-format=libpkgstate-generation-v1' \
-  'packages=1' \
-  'ownership-claims=2' \
+  'packages=4' \
+  'ownership-claims=8' \
   'owned-paths=2' \
-  'shared-paths=0' \
-  'rejected-object-references=1' \
+  'shared-paths=2' \
+  'rejected-object-references=4' \
   'reason-explicit=1' \
-  'reason-runtime-dependency=0' \
-  'reason-profile=0' \
-  'reason-system-policy=0'
+  'reason-runtime-dependency=1' \
+  'reason-profile=1' \
+  'reason-system-policy=1'
 do
   grep -F "$line" "$output" >/dev/null || fail "output omits $line"
 done
@@ -87,6 +87,37 @@ then
   fail 'absent store succeeded'
 fi
 test ! -e "$missing" || fail 'diagnostics initialized an absent store'
+
+expect_status()
+{
+  expected=$1
+  shift
+  set +e
+  "$pkgstate_check" "$@" > "$output" 2> "$error"
+  actual=$?
+  set -e
+  test "$actual" -eq "$expected" ||
+    fail "expected status $expected, got $actual for: $*"
+}
+
+expect_status 2
+grep -F -- '--canonical-store is required' "$error" >/dev/null ||
+  fail 'missing-store usage diagnostic is absent'
+expect_status 2 unexpected-positional
+grep -F 'unexpected positional argument' "$error" >/dev/null ||
+  fail 'positional-argument usage diagnostic is absent'
+expect_status 2 --canonical-store "$canonical"
+grep -F 'all canonical target-binding identities are required' "$error" >/dev/null ||
+  fail 'missing-binding usage diagnostic is absent'
+expect_status 1 \
+  --canonical-store "$canonical" \
+  --managed-target broken \
+  --state-store "$(identity 2)" \
+  --root-view "$(identity 3)" \
+  --state-backend "$(identity 4)" \
+  --publication-domain "$(identity 5)"
+grep -F 'pkgstate-check:' "$error" >/dev/null ||
+  fail 'malformed-binding diagnostic is absent'
 "$pkgstate_check" --help > "$output" 2> "$error" || fail 'help failed'
 grep -F 'never initializes a store' "$output" >/dev/null ||
   fail 'help omits read-only boundary'

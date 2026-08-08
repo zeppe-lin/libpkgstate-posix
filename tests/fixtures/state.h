@@ -134,7 +134,9 @@ inline pkgstate::installed_control control(
 
 inline pkgstate::installation_receipt receipt(
     std::string name = "example", std::uint8_t seed = 20,
-    pkgstate::state_target_binding binding = target())
+    pkgstate::state_target_binding binding = target(),
+    pkgstate::installation_reason reason =
+        pkgstate::installation_reason::explicit_request())
 {
   std::vector<pkgstate::owned_entry> manifest;
   manifest.push_back(pkgstate::owned_entry::make(
@@ -150,7 +152,7 @@ inline pkgstate::installation_receipt receipt(
           identity<pkgstate::rejected_object_identity>(seed + 17))));
 
   return pkgstate::installation_receipt::make(
-      control(std::move(name), seed), std::move(binding),
+      control(std::move(name), seed, std::move(reason)), std::move(binding),
       std::move(manifest),
       identity<pkgstate::operation_plan_identity>(seed + 18),
       identity<pkgstate::application_evidence_identity>(seed + 19));
@@ -158,10 +160,12 @@ inline pkgstate::installation_receipt receipt(
 
 inline pkgstate::installed_package package(
     std::string name = "example", std::uint8_t seed = 20,
-    pkgstate::state_target_binding binding = target())
+    pkgstate::state_target_binding binding = target(),
+    pkgstate::installation_reason reason =
+        pkgstate::installation_reason::explicit_request())
 {
   return pkgstate::installed_package::make(
-      receipt(std::move(name), seed, std::move(binding)));
+      receipt(std::move(name), seed, std::move(binding), std::move(reason)));
 }
 
 inline pkgstate::snapshot state_with_package(

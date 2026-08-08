@@ -7,7 +7,9 @@ Before tagging:
 3. compare exact exports with `abi/libpkgstate-posix.exports` and verify SONAME 3;
 4. verify shared metadata exposes only `libpkgstate` and static metadata adds `libcrypto`;
 5. inspect `DT_NEEDED` for only `libpkgstate`, `libcrypto`, and platform runtime libraries;
-6. exercise generation publication, stale refusal, locking, corruption, durability, reopen, and diagnostics;
+6. run `unit`, `integration`, `header`, `contract`, and `tool` suites; the
+   integration suite must exercise generation publication, stale refusal,
+   locking, corruption, durability outcomes, recovery refusal, and reopen;
 7. compile every installed public header and an installed consumer;
 8. lint manuals, run strict Doxygen, and stage-install documentation and the optional tool;
 9. replay the mailbox and compare Git trees.

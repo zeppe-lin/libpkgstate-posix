@@ -2,6 +2,9 @@
 
 ## 3.0.0
 
+- Separate provider qualification into unit, integration, header, contract, and
+  tool suites; add direct locking, corruption, recovery, generation-reuse, and
+  publication-outcome fault qualification.
 - Retain the exact opened store-root descriptor across reads and publications so
   pathname rename/replacement cannot redirect an existing store handle.
 - Qualify stale refusal and reject writable, multiply-linked, or symlinked
