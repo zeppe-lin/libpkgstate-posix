@@ -7,6 +7,8 @@
   publication-outcome fault qualification.
 - Retain the exact opened store-root descriptor across reads and publications so
   pathname rename/replacement cannot redirect an existing store handle.
+- Open authoritative binding, selector, and selected-snapshot files non-blockingly
+  before regular-file validation so special-file corruption cannot stall readers.
 - Qualify stale refusal and reject writable, multiply-linked, or symlinked
   selectors together with writable selected generations.
 - Complete the documented public provider contract under Doxygen warnings-as-errors.

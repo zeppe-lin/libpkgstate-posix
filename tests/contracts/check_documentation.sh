@@ -15,6 +15,7 @@ grep -F 'mechanism provider' "$root/docs/architecture.md" >/dev/null || fail 'pr
 grep -F 'does not depend on this provider' "$root/docs/architecture.md" >/dev/null || fail 'dependency direction absent'
 
 grep -F 'state-owned generation codec' "$root/docs/architecture.md" >/dev/null || fail 'protocol ownership absent'
+grep -F 'Authoritative regular-file opens are non-blocking' "$root/STORAGE.md" >/dev/null || fail 'non-blocking special-file refusal absent'
 python3 "$root/tools/check-public-documentation.py" \
   "$root" libpkgstate-posix libpkgstate-posix.h
 if command -v clang++ >/dev/null 2>&1; then

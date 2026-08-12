@@ -27,7 +27,7 @@ for test in \
   initialization_test.cpp publication_test.cpp root_authority_test.cpp \
   locking_test.cpp layout_validation_test.cpp generation_validation_test.cpp \
   recovery_refusal_test.cpp generation_collision_test.cpp \
-  publication_outcome_test.cpp; do
+  publication_outcome_test.cpp special_file_refusal_test.cpp; do
   test -s "$root/tests/integration/$test" || fail "missing integration/$test"
 done
 

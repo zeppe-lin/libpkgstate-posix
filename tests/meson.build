@@ -24,6 +24,7 @@ if get_option('tests').allowed()
     ['recovery-refusal-test', 'refuse bound recovery and ignore unselected work', 'integration/recovery_refusal_test.cpp'],
     ['generation-collision-test', 'refuse corrupt existing generation reuse', 'integration/generation_collision_test.cpp'],
     ['publication-outcome-test', 'classify publication mechanism failures', 'integration/publication_outcome_test.cpp'],
+    ['special-file-refusal-test', 'refuse blocking special-file corruption', 'integration/special_file_refusal_test.cpp'],
   ]
     dependencies = [libpkgstate_posix_dep]
     if spec[0] == 'publication-test'

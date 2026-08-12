@@ -18,8 +18,9 @@ across configured-path rename/replacement, immutable generation publication,
 exact generation reuse, concrete stale refusal without mutation, publication
 evidence, read-only existing-store open, shared/exclusive non-blocking lock
 behavior, writable/multiply-linked/symlink selector refusal, malformed selector
-refusal, writable or redirected selected-generation refusal, snapshot
-corruption and target/identity mismatch, bound incomplete-layout recovery
+refusal, non-blocking FIFO refusal for binding, selector, and selected snapshot,
+writable or redirected selected-generation refusal, snapshot corruption and
+target/identity mismatch, bound incomplete-layout recovery
 refusal, unbound empty-initialization completion, unselected crash leftovers,
 and corrupt existing-generation collision refusal.
 

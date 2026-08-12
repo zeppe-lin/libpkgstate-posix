@@ -24,9 +24,11 @@ receipt. Every state-owned identity is recomputed while reading. External
 identities are decoded as typed references and retained exactly.
 
 Publication writes and synchronizes a new generation before atomically replacing
-and synchronizing `current`. Readers reject selector traversal, malformed data,
-unknown versions and enum values, duplicate normalized values, identity
-mismatches, target mismatches, and trailing bytes.
+and synchronizing `current`. Authoritative regular-file opens are non-blocking
+before type validation, so special-file corruption such as a FIFO is refused
+rather than allowed to stall a reader. Readers reject selector traversal,
+malformed data, unknown versions and enum values, duplicate normalized values,
+identity mismatches, target mismatches, and trailing bytes.
 
 Current version: 1.
 Current receipt-visible identifier: `libpkgstate-generation-v1`.
