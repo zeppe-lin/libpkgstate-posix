@@ -24,7 +24,10 @@ successful reread yields `published_durability_unconfirmed`, and failed
 post-selection durability with an unavailable authoritative reread yields
 `indeterminate`.
 
-The CLI suite treats `pkgstate-check` as a caller: it opens through
-`open_existing()`, reports a state containing shared ownership and every
-installation-reason class, and proves diagnostics neither initialize nor mutate
-storage.
+The CLI suite treats both reference clients as ordinary callers.
+`pkgstate-init` invokes the provider's open-or-initialize constructor, requires
+the resulting authoritative snapshot to be empty, proves stable replay for the
+same exact binding, and refuses mismatched or populated stores without erasing
+state. `pkgstate-check` opens only through `open_existing()`, reports a state
+containing shared ownership and every installation-reason class, and proves
+diagnostics neither initialize nor mutate storage.

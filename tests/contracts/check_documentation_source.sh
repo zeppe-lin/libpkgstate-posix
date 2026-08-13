@@ -31,7 +31,7 @@ fi
 if find "$root" -type f \( -name '*.scd' -o -name '*.scdoc' \) | grep . >/dev/null; then
   fail 'scdoc manual authority remains'
 fi
-for page in libpkgstate-posix.3 pkgstate_canonical_generation_store.3 pkgstate-generation.5 pkgstate-check.1; do
+for page in libpkgstate-posix.3 pkgstate_canonical_generation_store.3 pkgstate-generation.5 pkgstate-init.1 pkgstate-check.1; do
   [ -s "$root/docs/man/$page.md" ] || fail "canonical Markdown manual missing: $page"
   [ -s "$root/docs/man/generated/$page" ] || fail "generated roff missing: $page"
 done

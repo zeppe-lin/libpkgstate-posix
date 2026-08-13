@@ -1,4 +1,4 @@
-% PKGSTATE-GENERATION(5) libpkgstate-posix | Version 3.0.0
+% PKGSTATE-GENERATION(5) libpkgstate-posix | Version 3.1.0
 
 # NAME
 
@@ -46,4 +46,4 @@ mismatches, trailing data, and selector traversal.
 # SEE ALSO
 
 **pkgstate_generation_codec**(3), **pkgstate_canonical_generation_store**(3),
-**pkgstate-check**(1)
+**pkgstate-init**(1), **pkgstate-check**(1)

@@ -1,5 +1,16 @@
 # libpkgstate-posix history
 
+## 3.1.0
+
+- Add `pkgstate-init` as the explicit provider-owned entry point for admitting
+  an empty target-bound canonical generation store without teaching controllers
+  the private generation bootstrap protocol.
+- Refuse populated stores at the bootstrap CLI boundary; existing package state
+  is never erased or reinterpreted as fresh state.
+- Qualify absent-path initialization, stable same-binding replay, mismatched
+  binding refusal, populated-store refusal, installed tooling, and manual
+  contracts while preserving SONAME 3 and generation-v1 bytes.
+
 ## 3.0.0
 
 - Separate provider qualification into unit, integration, header, contract, and

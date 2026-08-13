@@ -19,7 +19,7 @@ one durable target-bound canonical snapshot
 
 ## Authority
 
-`libpkgstate` owns installed-state values, stale-safe compare-and-publish semantics, publication requests and receipts, and durable evidence codecs. This repository owns one host mechanism: descriptor-anchored immutable generations whose opened store authority survives pathname rename/replacement, publication locking, durable selector replacement, recovery refusal, and read-only `pkgstate-check` diagnostics. Canonical generation-v1 binding and snapshot bytes are encoded and validated by `libpkgstate`; this provider persists them without reinterpretation.
+`libpkgstate` owns installed-state values, stale-safe compare-and-publish semantics, publication requests and receipts, and durable evidence codecs. This repository owns one host mechanism: descriptor-anchored immutable generations whose opened store authority survives pathname rename/replacement, publication locking, durable selector replacement, recovery refusal, explicit empty-state bootstrap through `pkgstate-init`, and read-only `pkgstate-check` diagnostics. Canonical generation-v1 binding and snapshot bytes are encoded and validated by `libpkgstate`; this provider persists them without reinterpretation.
 
 It does not parse package sources, admit builds, inspect images, plan or apply operations, construct publication requests, reinterpret stale requests, repair state, import historical databases, or choose retry policy.
 
@@ -37,7 +37,7 @@ meson compile -C build-static
 meson test -C build-static --print-errorlogs
 ```
 
-The optional `pkgstate-check` client is built by default and installed only with `-Dinstall_tools=true`.
+The optional `pkgstate-init` bootstrap client and `pkgstate-check` diagnostic client are built by default and installed only with `-Dinstall_tools=true`.
 
 ## Release lineage
 
@@ -51,7 +51,8 @@ The repository was extracted from the `libpkgstate` provider implementation befo
 - `docs/abi.md` — ABI and pkg-config policy;
 - `docs/man/libpkgstate-posix.3.md` — installed provider overview;
 - `docs/man/pkgstate_canonical_generation_store.3.md` — concrete class contract;
-- `docs/man/pkgstate-generation.5.md` — generation-v1 storage format; and
+- `docs/man/pkgstate-generation.5.md` — generation-v1 storage format;
+- `docs/man/pkgstate-init.1.md` — explicit empty-state bootstrap client; and
 - `docs/man/pkgstate-check.1.md` — read-only diagnostic client.
 
 ## License

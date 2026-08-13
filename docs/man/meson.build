@@ -5,6 +5,7 @@ manual_pages = [
   ['libpkgstate-posix.3', '3', true],
   ['pkgstate_canonical_generation_store.3', '3', true],
   ['pkgstate-generation.5', '5', true],
+  ['pkgstate-init.1', '1', get_option('install_tools')],
   ['pkgstate-check.1', '1', get_option('install_tools')],
 ]
 

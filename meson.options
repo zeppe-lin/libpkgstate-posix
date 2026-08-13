@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 option('link_mode', type: 'combo', choices: ['shared', 'static'], value: 'shared', description: 'Dependency linkage mode; must match default_library')
 option('tests', type: 'feature', value: 'enabled', description: 'Build and run the generation-store test suite')
-option('tools', type: 'feature', value: 'enabled', description: 'Build reference generation-store diagnostics')
-option('install_tools', type: 'boolean', value: false, description: 'Install reference diagnostics')
+option('tools', type: 'feature', value: 'enabled', description: 'Build reference generation-store clients')
+option('install_tools', type: 'boolean', value: false, description: 'Install reference generation-store clients')
 option('man_pages', type: 'feature', value: 'auto', description: 'Install committed generated manual pages')
 
 option(

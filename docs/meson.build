@@ -36,6 +36,7 @@ install_data(
 
 install_data(
   'man/libpkgstate-posix.3.md',
+  'man/pkgstate-init.1.md',
   'man/pkgstate-check.1.md',
   'man/pkgstate-generation.5.md',
   'man/pkgstate_canonical_generation_store.3.md',
@@ -85,6 +86,7 @@ if html_docs_enabled
     'storage.md',
     'history/3.0-extraction.md',
     'man/libpkgstate-posix.3.md',
+    'man/pkgstate-init.1.md',
     'man/pkgstate-check.1.md',
     'man/pkgstate-generation.5.md',
     'man/pkgstate_canonical_generation_store.3.md',

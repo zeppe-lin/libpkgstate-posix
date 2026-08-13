@@ -67,6 +67,7 @@ if get_option('tests').allowed()
     pkgconfig: 'includedir',
   )
   foreach contract : [
+    'bootstrap_client',
     'architecture',
     'abi',
     'ci',
@@ -124,6 +125,27 @@ if get_option('tests').allowed()
       'pkgstate-check-fixture',
       'cli/pkgstate_check_fixture.cpp',
       dependencies: libpkgstate_posix_dep,
+    )
+    test(
+      'initialize empty canonical state explicitly',
+      sh,
+      args: [
+        join_paths(meson.current_source_dir(), 'cli/pkgstate_init_cli_test.sh'),
+        pkgstate_init_tool,
+        pkgstate_check_tool,
+        fixture,
+      ],
+      suite: 'cli',
+    )
+    test(
+      'verify pkgstate-init manual contract',
+      sh,
+      args: [
+        join_paths(meson.current_source_dir(), 'cli/pkgstate_init_manual_test.sh'),
+        meson.project_source_root(),
+        pkgstate_init_tool,
+      ],
+      suite: 'cli',
     )
     test(
       'exercise read-only generation diagnostics',

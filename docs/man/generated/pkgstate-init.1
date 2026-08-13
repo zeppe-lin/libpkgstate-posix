@@ -1,0 +1,64 @@
+.\" Generated from docs/man/pkgstate-init.1.md; do not edit.
+.\"
+.TH "PKGSTATE\-INIT" "1" "" "libpkgstate\-posix" "Version 3.1.0"
+.SH NAME
+pkgstate\-init \- initialize empty native installed state
+.SH SYNOPSIS
+\f[B]pkgstate\-init\f[R] \f[B]\-\-canonical\-store\f[R] \f[I]path\f[R]
+.PD 0
+.P
+.PD
+\f[B]\-\-managed\-target\f[R] \f[I]identity\f[R]
+.PD 0
+.P
+.PD
+\f[B]\-\-state\-store\f[R] \f[I]identity\f[R]
+.PD 0
+.P
+.PD
+\f[B]\-\-root\-view\f[R] \f[I]identity\f[R]
+.PD 0
+.P
+.PD
+\f[B]\-\-state\-backend\f[R] \f[I]identity\f[R]
+.PD 0
+.P
+.PD
+\f[B]\-\-publication\-domain\f[R] \f[I]identity\f[R]
+.PP
+\f[B]pkgstate\-init\f[R] {\f[B]\-V\f[R] | \f[B]\-h\f[R]}
+.SH DESCRIPTION
+\f[B]pkgstate\-init\f[R] explicitly invokes the POSIX provider\[aq]s canonical open\-or\-initialize authority for one exact \f[B]state_target_binding\f[R].
+It creates and durably selects the canonical empty generation when initialization is needed, or validates an already\-bound empty store.
+.PP
+The command admits only an empty canonical snapshot.
+It does not erase packages, repair foreign or incompatible state, import a historical package database, construct installed\-state truth from retained evidence, or publish a non\-empty generation.
+.PP
+A valid store that already contains installed packages is refused.
+A store bound to different target identities is refused by the provider.
+.SH OPTIONS
+\f[B]\-c\f[R], \f[B]\-\-canonical\-store\f[R]=\f[I]path\f[R] Initialize or validate the canonical generation store at \f[I]path\f[R].
+.PP
+\f[B]\-\-managed\-target\f[R]=\f[I]identity\f[R] Managed\-target identity to bind.
+.PP
+\f[B]\-\-state\-store\f[R]=\f[I]identity\f[R] Durable state\-store identity to bind.
+.PP
+\f[B]\-\-root\-view\f[R]=\f[I]identity\f[R] Logical target root\-view identity to bind.
+.PP
+\f[B]\-\-state\-backend\f[R]=\f[I]identity\f[R] State\-backend identity to bind.
+.PP
+\f[B]\-\-publication\-domain\f[R]=\f[I]identity\f[R] Publication and locking\-domain identity to bind.
+.PP
+\f[B]\-V\f[R], \f[B]\-\-version\f[R] Print version and exit.
+.PP
+\f[B]\-h\f[R], \f[B]\-\-help\f[R] Print usage and exit.
+.SH OUTPUT
+On success the command reports the storage format, store coordinate, exact target\-binding identity, selected snapshot identity, ownership\-inventory identity, and \f[B]packages=0\f[R].
+.SH EXIT STATUS
+0 An empty store with the exact supplied binding is authoritative.
+.PP
+1 Initialization or validation failed, the binding mismatched, or the canonical store already contains installed packages.
+.PP
+2 Command\-line usage is invalid.
+.SH SEE ALSO
+\f[B]pkgstate\-check\f[R](1), \f[B]pkgstate\-generation\f[R](5), \f[B]pkgstate_canonical_generation_store\f[R](3)

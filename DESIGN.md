@@ -33,3 +33,13 @@ libpkgstate-posix -> libpkgstate
 the provider at the composition root.
 The provider consumes the state-owned generation codec; it does not own a
 competing state-record protocol.
+
+## Bootstrap client
+
+`pkgstate-init` is a provider-owned reference client for the existing
+open-or-initialize constructor. It admits one exact target binding and requires
+the authoritative result to remain the canonical empty snapshot. It does not
+own target creation, package selection, migration, repair, or publication of
+installed packages. Controllers may use the initialized store later through
+`open_existing()`; they do not need to duplicate the provider's generation
+bootstrap protocol.

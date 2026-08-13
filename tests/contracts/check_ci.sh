@@ -35,8 +35,10 @@ done
 
 grep -F 'libpkgstate.so.4' "$root/ci/audit-shared-boundary.sh" >/dev/null ||
   fail 'shared audit does not bind the state-owner SONAME'
-grep -F 'pkgstate-check' "$root/ci/qualify-installed.sh" >/dev/null ||
-  fail 'installed reference tool is not qualified'
+for tool in pkgstate-init pkgstate-check; do
+  grep -F "$tool" "$root/ci/qualify-installed.sh" >/dev/null ||
+    fail "installed reference tool is not qualified: $tool"
+done
 grep -F 'html_docs: enabled' "$workflow" >/dev/null || fail 'GCC shared HTML build is absent'
 grep -F 'pandoc' "$workflow" >/dev/null || fail 'Pandoc qualification dependency is absent'
 grep -F -- '-Dhtml_docs=' "$workflow" >/dev/null || fail 'HTML Meson feature is not configured'

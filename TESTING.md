@@ -9,8 +9,8 @@ The test tree separates evidence by role:
 - `header` compiles every public header and the umbrella independently;
 - `contract` checks architecture, ABI, release, repository, documentation,
   pkg-config, style, and test-layout invariants; and
-- `cli` qualifies the installed-state diagnostic client as a read-only
-  consumer of an existing store.
+- `cli` qualifies the explicit empty-state bootstrap client and the
+  installed-state diagnostic client at their opposite authority boundaries.
 
 Integration qualification covers exact target binding, canonical empty
 initialization, state-owned binding/snapshot bytes, retained store authority
@@ -32,10 +32,16 @@ publication without durability confirmation, and an indeterminate post-selection
 state requiring authoritative recovery. Successful publication still exercises
 ordinary kernel `fsync()` calls.
 
+The `pkgstate-init` CLI test starts from an absent nested path, proves one exact
+empty generation is admitted, validates it through `pkgstate-check`, proves
+repeated same-binding initialization is stable, refuses a mismatched binding
+without changing durable state, and refuses an already-populated valid store
+without erasing packages.
+
 The `pkgstate-check` fixture publishes packages covering every installation
-reason and shared ownership. The CLI test snapshots the durable store before
-and after diagnostics, proves the report counts, refuses a mismatched binding,
-and proves an absent store is not initialized.
+reason and shared ownership. The diagnostic CLI test snapshots the durable
+store before and after inspection, proves the report counts, refuses a
+mismatched binding, and proves an absent store is not initialized.
 
 The release matrix contains GCC and Clang shared/static builds, optimized
 release, ASan/UBSan, strict Doxygen, `mandoc -Tlint`, staged installation, and

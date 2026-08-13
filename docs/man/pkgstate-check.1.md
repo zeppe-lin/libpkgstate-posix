@@ -1,4 +1,4 @@
-% PKGSTATE-CHECK(1) libpkgstate-posix | Version 3.0.0
+% PKGSTATE-CHECK(1) libpkgstate-posix | Version 3.1.0
 
 # NAME
 
@@ -67,4 +67,5 @@ Command-line usage is invalid.
 
 # SEE ALSO
 
-**pkgstate-generation**(5), **pkgstate_canonical_generation_store**(3)
+**pkgstate-init**(1), **pkgstate-generation**(5),
+**pkgstate_canonical_generation_store**(3)

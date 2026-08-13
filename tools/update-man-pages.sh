@@ -47,7 +47,7 @@ fi
 mkdir -p "$root/docs/man/generated"
 
 status=0
-for page in libpkgstate-posix.3 pkgstate_canonical_generation_store.3 pkgstate-generation.5 pkgstate-check.1
+for page in libpkgstate-posix.3 pkgstate_canonical_generation_store.3 pkgstate-generation.5 pkgstate-init.1 pkgstate-check.1
 do
   source=$root/docs/man/$page.md
   output=$root/docs/man/generated/$page

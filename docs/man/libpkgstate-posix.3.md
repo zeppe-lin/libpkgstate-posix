@@ -1,4 +1,4 @@
-% LIBPKGSTATE-POSIX(3) libpkgstate-posix | Version 3.0.0
+% LIBPKGSTATE-POSIX(3) libpkgstate-posix | Version 3.1.0
 
 # NAME
 
@@ -14,7 +14,7 @@ libpkgstate-posix - POSIX immutable-generation storage for libpkgstate
 contract with one descriptor-anchored immutable-generation filesystem backend.
 It owns store binding, publication locking, immutable generation publication,
 current-selector replacement, durability reporting, recovery refusal, and
-read-only store diagnostics. Canonical generation-v1 record encoding and
+explicit empty-store bootstrap, and read-only store diagnostics. Canonical generation-v1 record encoding and
 validation are provided by **libpkgstate** and consumed without reinterpretation.
 
 The semantic **libpkgstate** owner retains stale comparison, result derivation,
@@ -32,11 +32,12 @@ resulting snapshot derived by the non-virtual core publication sequence.
 
 # TOOLS
 
-**pkgstate-check**(1) is a read-only diagnostic client for this provider. It is
-built by default and installed only when **install_tools** is enabled.
+**pkgstate-init**(1) is the explicit empty-state bootstrap client.
+**pkgstate-check**(1) is the read-only diagnostic client. Both are built by
+default and installed only when **install_tools** is enabled.
 
 # SEE ALSO
 
 **libpkgstate**(3), **pkgstate_generation_codec**(3), **pkgstate_store**(3),
 **pkgstate_canonical_generation_store**(3), **pkgstate-generation**(5),
-**pkgstate-check**(1)
+**pkgstate-init**(1), **pkgstate-check**(1)

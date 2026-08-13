@@ -67,6 +67,11 @@
       "title": "LIBPKGSTATE-POSIX(3) libpkgstate-posix"
     },
     {
+      "source": "docs/man/pkgstate-init.1.md",
+      "output": "manual/pkgstate-init.1.html",
+      "title": "PKGSTATE-INIT(1) libpkgstate-posix"
+    },
+    {
       "source": "docs/man/pkgstate-check.1.md",
       "output": "manual/pkgstate-check.1.html",
       "title": "PKGSTATE-CHECK(1) libpkgstate-posix"

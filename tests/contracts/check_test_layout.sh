@@ -32,7 +32,7 @@ for test in \
   test -s "$root/tests/integration/$test" || fail "missing integration/$test"
 done
 
-for test in pkgstate_check_fixture.cpp pkgstate_check_cli_test.sh pkgstate_check_manual_test.sh; do
+for test in pkgstate_check_fixture.cpp pkgstate_init_cli_test.sh pkgstate_init_manual_test.sh pkgstate_check_cli_test.sh pkgstate_check_manual_test.sh; do
   test -s "$root/tests/cli/$test" || fail "missing cli/$test"
 done
 

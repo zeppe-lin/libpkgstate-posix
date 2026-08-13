@@ -9,7 +9,7 @@ escaping local links, leaked source/build paths, and source-format links. The
 installed tree is placed below:
 
 ```
-share/htmldocs/libpkgstate-posix/3.0.0
+share/htmldocs/libpkgstate-posix/3.1.0
 ```
 
 HTML output is derived. Edit the Markdown, headers, or Doxygen source and regenerate; never patch

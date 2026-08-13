@@ -8,6 +8,7 @@ fail(){ echo "manpage-source-contract: $*" >&2; exit 1; }
 pages='libpkgstate-posix.3
 pkgstate_canonical_generation_store.3
 pkgstate-generation.5
+pkgstate-init.1
 pkgstate-check.1'
 
 printf '%s\n' "$pages" | while IFS= read -r page; do
@@ -19,10 +20,11 @@ printf '%s\n' "$pages" | while IFS= read -r page; do
     libpkgstate-posix.3) title='LIBPKGSTATE-POSIX(3)' ;;
     pkgstate_canonical_generation_store.3) title='PKGSTATE_CANONICAL_GENERATION_STORE(3)' ;;
     pkgstate-generation.5) title='PKGSTATE-GENERATION(5)' ;;
+    pkgstate-init.1) title='PKGSTATE-INIT(1)' ;;
     pkgstate-check.1) title='PKGSTATE-CHECK(1)' ;;
   esac
   first=$(sed -n '1p' "$source")
-  [ "$first" = "% $title libpkgstate-posix | Version 3.0.0" ] ||
+  [ "$first" = "% $title libpkgstate-posix | Version 3.1.0" ] ||
     fail "invalid Pandoc title for $page: $first"
   grep -F '# NAME' "$source" >/dev/null || fail "$page omits NAME"
   grep -F '# SEE ALSO' "$source" >/dev/null || fail "$page omits SEE ALSO"

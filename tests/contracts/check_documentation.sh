@@ -16,7 +16,7 @@ for f in README.md HISTORY.md DESIGN.md TESTING.md CONTRIBUTING.md MAINTAINING.m
          docs/storage.md docs/abi.md docs/integration.md docs/qualification.md \
          docs/code-style.md docs/man/libpkgstate-posix.3.md \
          docs/man/pkgstate_canonical_generation_store.3.md \
-         docs/man/pkgstate-generation.5.md docs/man/pkgstate-check.1.md; do
+         docs/man/pkgstate-generation.5.md docs/man/pkgstate-init.1.md docs/man/pkgstate-check.1.md; do
   test -s "$root/$f" || fail "missing $f"
 done
 grep -F 'mechanism provider' "$root/DESIGN.md" >/dev/null || fail 'provider placement absent'

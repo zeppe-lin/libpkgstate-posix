@@ -1,4 +1,4 @@
-% PKGSTATE_CANONICAL_GENERATION_STORE(3) libpkgstate-posix | Version 3.0.0
+% PKGSTATE_CANONICAL_GENERATION_STORE(3) libpkgstate-posix | Version 3.1.0
 
 # NAME
 
@@ -34,4 +34,5 @@ identities, inconsistent target bindings, and trailing data are rejected.
 
 # SEE ALSO
 
-**pkgstate-generation**(5), **pkgstate_store**(3), **pkgstate-check**(1)
+**pkgstate-generation**(5), **pkgstate_store**(3), **pkgstate-init**(1),
+**pkgstate-check**(1)

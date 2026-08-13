@@ -26,8 +26,8 @@ export PKG_CONFIG_PATH="$install_prefix/lib/pkgconfig:$dependency_prefix/lib/pkg
 export LD_LIBRARY_PATH="$install_prefix/lib:$dependency_prefix/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 unset PKG_CONFIG_SYSROOT_DIR
 
-[ "$(pkg-config --modversion libpkgstate-posix)" = 3.0.0 ] || {
-  echo 'installed libpkgstate-posix version is not 3.0.0' >&2
+[ "$(pkg-config --modversion libpkgstate-posix)" = 3.1.0 ] || {
+  echo 'installed libpkgstate-posix version is not 3.1.0' >&2
   exit 1
 }
 
@@ -86,7 +86,7 @@ done
 case $link_mode in
   shared)
     "$(dirname "$0")/audit-shared-boundary.sh" \
-      "$install_prefix/lib/libpkgstate-posix.so.3.0.0"
+      "$install_prefix/lib/libpkgstate-posix.so.3.1.0"
     ;;
   static)
     [ -f "$install_prefix/lib/libpkgstate-posix.a" ] || {
@@ -96,12 +96,22 @@ case $link_mode in
     ;;
 esac
 
+[ -x "$install_prefix/bin/pkgstate-init" ] || {
+  echo 'installed pkgstate-init is absent' >&2
+  exit 1
+}
+"$install_prefix/bin/pkgstate-init" --version | grep -F \
+  'pkgstate-init (libpkgstate-posix) 3.1.0' >/dev/null || {
+  echo 'installed pkgstate-init reports the wrong version' >&2
+  exit 1
+}
+
 [ -x "$install_prefix/bin/pkgstate-check" ] || {
   echo 'installed pkgstate-check is absent' >&2
   exit 1
 }
 "$install_prefix/bin/pkgstate-check" --version | grep -F \
-  'pkgstate-check (libpkgstate-posix) 3.0.0' >/dev/null || {
+  'pkgstate-check (libpkgstate-posix) 3.1.0' >/dev/null || {
   echo 'installed pkgstate-check reports the wrong version' >&2
   exit 1
 }

@@ -7,7 +7,7 @@ pkgstate_check=$2
 manual=$source_root/docs/man/pkgstate-check.1.md
 fail() { echo "pkgstate-check-manual-test: $*" >&2; exit 1; }
 test -s "$manual" || fail 'manual source is missing'
-test "$(sed -n '1p' "$manual")" = '% PKGSTATE-CHECK(1) libpkgstate-posix | Version 3.0.0' || fail 'manual heading is wrong'
+test "$(sed -n '1p' "$manual")" = '% PKGSTATE-CHECK(1) libpkgstate-posix | Version 3.1.0' || fail 'manual heading is wrong'
 temporary=$(mktemp -d)
 trap 'rm -rf "$temporary"' EXIT HUP INT TERM
 "$pkgstate_check" --help > "$temporary/help" 2> "$temporary/error" || fail 'help failed'

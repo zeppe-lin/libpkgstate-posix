@@ -1,6 +1,6 @@
 .\" Generated from docs/man/pkgstate-generation.5.md; do not edit.
 .\"
-.TH "PKGSTATE\-GENERATION" "5" "" "libpkgstate\-posix" "Version 3.0.0"
+.TH "PKGSTATE\-GENERATION" "5" "" "libpkgstate\-posix" "Version 3.1.0"
 .SH NAME
 pkgstate\-generation \- native immutable installed\-state storage format
 .SH DESCRIPTION
@@ -24,4 +24,4 @@ Generation directories are immutable after selection.
 .SH VALIDATION
 Readers reject malformed lengths, unknown enum values, invalid UTF\-8\-independent identifier bytes, duplicate normalized values, identity mismatches, target mismatches, trailing data, and selector traversal.
 .SH SEE ALSO
-\f[B]pkgstate_generation_codec\f[R](3), \f[B]pkgstate_canonical_generation_store\f[R](3), \f[B]pkgstate\-check\f[R](1)
+\f[B]pkgstate_generation_codec\f[R](3), \f[B]pkgstate_canonical_generation_store\f[R](3), \f[B]pkgstate\-init\f[R](1), \f[B]pkgstate\-check\f[R](1)
