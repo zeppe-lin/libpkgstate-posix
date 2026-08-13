@@ -9,17 +9,17 @@
     {
       "source": "CONTRIBUTING.md",
       "output": "contributing.html",
-      "title": "Contributing"
+      "title": "Contributing to libpkgstate-posix"
     },
     {
       "source": "DESIGN.md",
       "output": "design.html",
-      "title": "POSIX generation-store design"
+      "title": "libpkgstate-posix design"
     },
     {
       "source": "HISTORY.md",
       "output": "history.html",
-      "title": "History"
+      "title": "libpkgstate-posix history"
     },
     {
       "source": "MAINTAINING.md",
@@ -27,24 +27,19 @@
       "title": "Maintaining libpkgstate-posix"
     },
     {
-      "source": "STORAGE.md",
+      "source": "docs/storage.md",
       "output": "storage.html",
       "title": "Native generation storage"
     },
     {
       "source": "TESTING.md",
-      "output": "test-doctrine.html",
-      "title": "Qualification"
+      "output": "testing.html",
+      "title": "Testing libpkgstate-posix"
     },
     {
       "source": "docs/abi.md",
       "output": "abi.html",
       "title": "ABI and metadata policy"
-    },
-    {
-      "source": "docs/architecture.md",
-      "output": "architecture.html",
-      "title": "Architecture"
     },
     {
       "source": "docs/code-style.md",

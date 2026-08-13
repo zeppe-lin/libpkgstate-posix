@@ -24,7 +24,7 @@ successful reread yields `published_durability_unconfirmed`, and failed
 post-selection durability with an unavailable authoritative reread yields
 `indeterminate`.
 
-The tool suite treats `pkgstate-check` as a caller: it opens through
+The CLI suite treats `pkgstate-check` as a caller: it opens through
 `open_existing()`, reports a state containing shared ownership and every
 installation-reason class, and proves diagnostics neither initialize nor mutate
 storage.

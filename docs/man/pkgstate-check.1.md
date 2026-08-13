@@ -1,8 +1,5 @@
 % PKGSTATE-CHECK(1) libpkgstate-posix | Version 3.0.0
 
-<!-- Generated from pkgstate-check.1.scdoc; do not edit. -->
-
-
 # NAME
 
 pkgstate-check - validate and summarize native installed state

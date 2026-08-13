@@ -108,7 +108,7 @@ esac
 
 python3 ci/qualify-installed-documentation.py "$install_prefix" libpkgstate-posix
 
-for page in "$build_dir"/product/man/*.[1357]; do
+for page in "$build_dir"/product/docs/man/*.[1357]; do
   [ -e "$page" ] || continue
   section=${page##*.}
   installed=$install_prefix/share/man/man$section/$(basename "$page")

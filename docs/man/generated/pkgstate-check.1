@@ -1,0 +1,62 @@
+.\" Generated from docs/man/pkgstate-check.1.md; do not edit.
+.\"
+.TH "PKGSTATE\-CHECK" "1" "" "libpkgstate\-posix" "Version 3.0.0"
+.SH NAME
+pkgstate\-check \- validate and summarize native installed state
+.SH SYNOPSIS
+\f[B]pkgstate\-check\f[R] \f[B]\-\-canonical\-store\f[R] \f[I]path\f[R]
+.PD 0
+.P
+.PD
+\f[B]\-\-managed\-target\f[R] \f[I]identity\f[R]
+.PD 0
+.P
+.PD
+\f[B]\-\-state\-store\f[R] \f[I]identity\f[R]
+.PD 0
+.P
+.PD
+\f[B]\-\-root\-view\f[R] \f[I]identity\f[R]
+.PD 0
+.P
+.PD
+\f[B]\-\-state\-backend\f[R] \f[I]identity\f[R]
+.PD 0
+.P
+.PD
+\f[B]\-\-publication\-domain\f[R] \f[I]identity\f[R]
+.PD 0
+.P
+.PD
+.PP
+\f[B]pkgstate\-check\f[R] {\f[B]\-V\f[R] | \f[B]\-h\f[R]}
+.SH DESCRIPTION
+\f[B]pkgstate\-check\f[R] opens an existing canonical generation store, validates its binding and selected generation, and prints one complete report.
+The command is read\-only.
+It does not initialize a missing store, repair records, publish a generation, execute lifecycle programs, or import another package database.
+.SH OPTIONS
+\f[B]\-c\f[R], \f[B]\-\-canonical\-store\f[R]=\f[I]path\f[R] Inspect the existing generation store at \f[I]path\f[R].
+.PP
+\f[B]\-\-managed\-target\f[R]=\f[I]identity\f[R] Expected managed\-target identity.
+.PP
+\f[B]\-\-state\-store\f[R]=\f[I]identity\f[R] Expected durable state\-store identity.
+.PP
+\f[B]\-\-root\-view\f[R]=\f[I]identity\f[R] Expected logical target root\-view identity.
+.PP
+\f[B]\-\-state\-backend\f[R]=\f[I]identity\f[R] Expected state\-backend identity.
+.PP
+\f[B]\-\-publication\-domain\f[R]=\f[I]identity\f[R] Expected publication\-domain identity.
+.PP
+\f[B]\-V\f[R], \f[B]\-\-version\f[R] Print version and exit.
+.PP
+\f[B]\-h\f[R], \f[B]\-\-help\f[R] Print usage and exit.
+.SH OUTPUT
+The report includes storage format, target binding, snapshot and ownership identities, package and ownership counts, rejected\-object references, and package counts by installation reason.
+.SH EXIT STATUS
+0 The store is valid and the report was emitted.
+.PP
+1 The store or binding is invalid.
+.PP
+2 Command\-line usage is invalid.
+.SH SEE ALSO
+\f[B]pkgstate\-generation\f[R](5), \f[B]pkgstate_canonical_generation_store\f[R](3)

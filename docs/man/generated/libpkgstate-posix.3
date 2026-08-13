@@ -1,0 +1,23 @@
+.\" Generated from docs/man/libpkgstate-posix.3.md; do not edit.
+.\"
+.TH "LIBPKGSTATE\-POSIX" "3" "" "libpkgstate\-posix" "Version 3.0.0"
+.SH NAME
+libpkgstate\-posix \- POSIX immutable\-generation storage for libpkgstate
+.SH SYNOPSIS
+\f[B]#include <libpkgstate\-posix/libpkgstate\-posix.h>\f[R]
+.SH DESCRIPTION
+\f[B]libpkgstate\-posix\f[R] implements the abstract \f[B]libpkgstate\f[R] canonical\-store contract with one descriptor\-anchored immutable\-generation filesystem backend.
+It owns store binding, publication locking, immutable generation publication, current\-selector replacement, durability reporting, recovery refusal, and read\-only store diagnostics.
+Canonical generation\-v1 record encoding and validation are provided by \f[B]libpkgstate\f[R] and consumed without reinterpretation.
+.PP
+The semantic \f[B]libpkgstate\f[R] owner retains stale comparison, result derivation, publication requests and receipts, and evidence codecs.
+This provider cannot reinterpret a request, silently rebase stale authority, construct package state, or claim target\-filesystem and state\-store atomicity.
+.SH INTERFACE
+\f[B]pkgstate::posix::canonical_generation_store\f[R] opens or initializes one target\-bound store.
+\f[B]open_existing()\f[R] validates an existing store without creating or repairing it.
+The class implements \f[B]canonical_store\f[R] and therefore receives only the exact resulting snapshot derived by the non\-virtual core publication sequence.
+.SH TOOLS
+\f[B]pkgstate\-check\f[R](1) is a read\-only diagnostic client for this provider.
+It is built by default and installed only when \f[B]install_tools\f[R] is enabled.
+.SH SEE ALSO
+\f[B]libpkgstate\f[R](3), \f[B]pkgstate_generation_codec\f[R](3), \f[B]pkgstate_store\f[R](3), \f[B]pkgstate_canonical_generation_store\f[R](3), \f[B]pkgstate\-generation\f[R](5), \f[B]pkgstate\-check\f[R](1)

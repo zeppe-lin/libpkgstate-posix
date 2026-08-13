@@ -81,7 +81,7 @@ public:
 
   /*!
    * \brief Return the durable target binding owned by this store.
-  *  \return The durable target binding owned by this store.
+   * \return The durable target binding owned by this store.
    */
   [[nodiscard]] const state_target_binding&
   target_binding() const noexcept;

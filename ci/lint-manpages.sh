@@ -15,7 +15,7 @@ pkgstate-generation.5
 pkgstate-check.1'
 
 printf '%s\n' "$expected" | while IFS= read -r name; do
-  page=$build_dir/product/man/$name
+  page=$build_dir/product/docs/man/$name
   [ -s "$page" ] || {
     echo "generated manual is absent: $page" >&2
     exit 1

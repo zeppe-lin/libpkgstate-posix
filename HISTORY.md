@@ -1,4 +1,4 @@
-# History
+# libpkgstate-posix history
 
 ## 3.0.0
 

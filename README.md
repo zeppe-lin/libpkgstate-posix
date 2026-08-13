@@ -46,14 +46,13 @@ The repository was extracted from the `libpkgstate` provider implementation befo
 ## Documentation
 
 - `DESIGN.md` — provider invariants and refusal boundaries;
-- `STORAGE.md` — immutable-generation layout and durability protocol;
+- `docs/storage.md` — immutable-generation layout and durability protocol;
 - `TESTING.md` — qualification matrix;
-- `docs/architecture.md` — owner/provider placement;
 - `docs/abi.md` — ABI and pkg-config policy;
-- `man/libpkgstate-posix.3.scdoc` — installed provider overview;
-- `man/pkgstate_canonical_generation_store.3.scdoc` — concrete class contract;
-- `man/pkgstate-generation.5.scdoc` — generation-v1 storage format; and
-- `man/pkgstate-check.1.scdoc` — read-only diagnostic client.
+- `docs/man/libpkgstate-posix.3.md` — installed provider overview;
+- `docs/man/pkgstate_canonical_generation_store.3.md` — concrete class contract;
+- `docs/man/pkgstate-generation.5.md` — generation-v1 storage format; and
+- `docs/man/pkgstate-check.1.md` — read-only diagnostic client.
 
 ## License
 

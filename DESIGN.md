@@ -1,4 +1,4 @@
-# POSIX generation-store design
+# libpkgstate-posix design
 
 ## Boundary
 
@@ -18,3 +18,18 @@ selector replacement, fsync ordering, recovery refusal, and diagnostics are
 provider mechanism and remain here. This repository consumes the core codec and
 contains no competing copy. Foreign source/build/plan/apply translations remain
 in their independent adapters.
+
+## Provider placement
+
+`libpkgstate-posix` is the concrete POSIX mechanism provider for the abstract
+`pkgstate::canonical_store` contract. Its API is isolated in the
+`pkgstate::posix` namespace and the dependency arrow points inward:
+
+```text
+libpkgstate-posix -> libpkgstate
+```
+
+`libpkgstate` never depends on this provider. Controllers choose and construct
+the provider at the composition root.
+The provider consumes the state-owned generation codec; it does not own a
+competing state-record protocol.

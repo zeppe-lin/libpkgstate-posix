@@ -66,7 +66,19 @@ if get_option('tests').allowed()
   libpkgstate_public_include = libpkgstate_dep.get_variable(
     pkgconfig: 'includedir',
   )
-  foreach contract : ['architecture', 'abi', 'ci', 'documentation', 'extraction', 'release', 'repository', 'test_layout']
+  foreach contract : [
+    'architecture',
+    'abi',
+    'ci',
+    'documentation',
+    'documentation_source',
+    'extraction',
+    'manpage_normalizer',
+    'manpage_source',
+    'release',
+    'repository',
+    'test_layout',
+  ]
     contract_args = [
       join_paths(meson.current_source_dir(), 'contracts/check_' + contract + '.sh'),
       meson.project_source_root(),
@@ -83,6 +95,20 @@ if get_option('tests').allowed()
     suite: 'contract',
   )
 
+  pandoc = find_program('pandoc', required: false)
+  if pandoc.found()
+    test(
+      'contract generated manpages',
+      sh,
+      args: [
+        join_paths(meson.current_source_dir(), 'contracts/check_manpage_generated.sh'),
+        meson.project_source_root(),
+        pandoc.full_path(),
+      ],
+      suite: 'contract',
+    )
+  endif
+
   test(
     'pkgconfig-metadata',
     sh,
@@ -96,20 +122,28 @@ if get_option('tests').allowed()
   if get_option('tools').allowed()
     fixture = executable(
       'pkgstate-check-fixture',
-      'tool/pkgstate_check_fixture.cpp',
+      'cli/pkgstate_check_fixture.cpp',
       dependencies: libpkgstate_posix_dep,
     )
     test(
       'exercise read-only generation diagnostics',
       sh,
-      args: [join_paths(meson.current_source_dir(), 'tool/pkgstate_check_cli_test.sh'), pkgstate_check_tool, fixture],
-      suite: 'tool',
+      args: [
+        join_paths(meson.current_source_dir(), 'cli/pkgstate_check_cli_test.sh'),
+        pkgstate_check_tool,
+        fixture,
+      ],
+      suite: 'cli',
     )
     test(
       'verify pkgstate-check manual contract',
       sh,
-      args: [join_paths(meson.current_source_dir(), 'tool/pkgstate_check_manual_test.sh'), meson.project_source_root(), pkgstate_check_tool],
-      suite: 'tool',
+      args: [
+        join_paths(meson.current_source_dir(), 'cli/pkgstate_check_manual_test.sh'),
+        meson.project_source_root(),
+        pkgstate_check_tool,
+      ],
+      suite: 'cli',
     )
   endif
 endif

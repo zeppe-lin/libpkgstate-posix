@@ -1,8 +1,5 @@
 % PKGSTATE_CANONICAL_GENERATION_STORE(3) libpkgstate-posix | Version 3.0.0
 
-<!-- Generated from pkgstate_canonical_generation_store.3.scdoc; do not edit. -->
-
-
 # NAME
 
 pkgstate_canonical_generation_store - immutable generation backend

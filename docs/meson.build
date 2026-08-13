@@ -9,7 +9,6 @@ install_data(
   '../HISTORY.md',
   '../MAINTAINING.md',
   '../README.md',
-  '../STORAGE.md',
   '../TESTING.md',
   '../COPYING',
   '../COPYRIGHT',
@@ -19,12 +18,12 @@ install_data(
 
 install_data(
   'abi.md',
-  'architecture.md',
   'code-style.md',
   'html.md',
   'integration.md',
   'manpage-markdown.md',
   'qualification.md',
+  'storage.md',
   install_dir: documentation_dir,
   install_tag: 'doc',
 )
@@ -51,6 +50,8 @@ install_data(
   install_tag: 'doc',
 )
 
+subdir('man')
+
 html_docs_enabled = get_option('html_docs').enabled()
 html_docs_target = []
 html_docs_output_dir = ''
@@ -74,15 +75,14 @@ if html_docs_enabled
     '../HISTORY.md',
     '../MAINTAINING.md',
     '../README.md',
-    '../STORAGE.md',
     '../TESTING.md',
     'abi.md',
-    'architecture.md',
     'code-style.md',
     'html.md',
     'integration.md',
     'manpage-markdown.md',
     'qualification.md',
+    'storage.md',
     'history/3.0-extraction.md',
     'man/libpkgstate-posix.3.md',
     'man/pkgstate-check.1.md',
@@ -97,8 +97,8 @@ if html_docs_enabled
     '../tools/build-html-docs.py',
     '../tools/check-html-docs.py',
     '../tools/install-html-docs.py',
-    '../tools/render-man-markdown.py',
-    '../tools/check-man-markdown.py',
+    '../tools/update-man-pages.sh',
+    '../tools/canonicalize-man-roff.awk',
     '../include/libpkgstate-posix/canonical_generation_store.h',
     '../include/libpkgstate-posix/export.h',
     '../include/libpkgstate-posix/libpkgstate-posix.h',

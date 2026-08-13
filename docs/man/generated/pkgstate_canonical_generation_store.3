@@ -1,0 +1,23 @@
+.\" Generated from docs/man/pkgstate_canonical_generation_store.3.md; do not edit.
+.\"
+.TH "PKGSTATE_CANONICAL_GENERATION_STORE" "3" "" "libpkgstate\-posix" "Version 3.0.0"
+.SH NAME
+pkgstate_canonical_generation_store \- immutable generation backend
+.SH SYNOPSIS
+\f[B]#include <libpkgstate\-posix/canonical_generation_store.h>\f[R]
+.SH DESCRIPTION
+\f[B]pkgstate::posix::canonical_generation_store\f[R] persists complete native snapshots in immutable generation directories.
+One current selector names the authoritative generation.
+The store directory is durably bound to exactly one \f[B]state_target_binding\f[R].
+.PP
+The normal constructor initializes an empty store when necessary.
+\f[B]open_existing()\f[R] validates an existing store without creating or repairing any path and is suitable for diagnostics.
+.SH PUBLICATION
+Compare\-and\-publish takes an exclusive directory lock, validates the expected snapshot, writes and synchronizes a new immutable generation, atomically replaces the current selector, synchronizes the selection boundary, and returns a typed receipt.
+Readers take a shared lock and decode the selected complete generation.
+.SH STORAGE FORMAT
+The current receipt\-visible format is \f[B]libpkgstate\-generation\-v1\f[R].
+On\-disk records are canonical length\-delimited binary values.
+Unknown versions, invalid identities, inconsistent target bindings, and trailing data are rejected.
+.SH SEE ALSO
+\f[B]pkgstate\-generation\f[R](5), \f[B]pkgstate_store\f[R](3), \f[B]pkgstate\-check\f[R](1)

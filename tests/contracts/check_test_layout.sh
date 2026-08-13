@@ -4,13 +4,14 @@
 set -eu
 root=$1
 fail(){ echo "test-layout-contract: $*" >&2; exit 1; }
+meson_file=$root/tests/meson.build
 
-for directory in contracts fixtures header integration support tool unit; do
+for directory in contracts fixtures header integration support cli unit; do
   test -d "$root/tests/$directory" || fail "missing tests/$directory"
 done
-
-for suite in unit integration header contract tool; do
-  grep -F "suite: '$suite'" "$root/tests/meson.build" >/dev/null ||
+[ ! -e "$root/tests/tool" ] || fail 'legacy tests/tool role remains'
+for suite in unit integration header contract cli; do
+  grep -F "suite: '$suite'" "$meson_file" >/dev/null ||
     fail "Meson suite is absent: $suite"
 done
 
@@ -29,6 +30,26 @@ for test in \
   recovery_refusal_test.cpp generation_collision_test.cpp \
   publication_outcome_test.cpp special_file_refusal_test.cpp; do
   test -s "$root/tests/integration/$test" || fail "missing integration/$test"
+done
+
+for test in pkgstate_check_fixture.cpp pkgstate_check_cli_test.sh pkgstate_check_manual_test.sh; do
+  test -s "$root/tests/cli/$test" || fail "missing cli/$test"
+done
+
+# Every normal executable shell contract must be represented in Meson. The
+# generated-man freshness check is conditional on Pandoc; ABI/pkg-config/style
+# use specialized registration paths.
+for contract in "$root"/tests/contracts/check_*.sh; do
+  name=$(basename "$contract")
+  case $name in
+    check_abi_surface.sh|check_documentation.sh|check_manpage_generated.sh|check_pkgconfig_metadata.sh|check_style.sh)
+      continue
+      ;;
+  esac
+  stem=${name#check_}
+  stem=${stem%.sh}
+  grep -F "'$stem'" "$meson_file" >/dev/null ||
+    fail "unregistered shell contract: $name"
 done
 
 printf '%s\n' 'test-layout-contract: ok'

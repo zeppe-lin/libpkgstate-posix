@@ -1,8 +1,5 @@
 % PKGSTATE-GENERATION(5) libpkgstate-posix | Version 3.0.0
 
-<!-- Generated from pkgstate-generation.5.scdoc; do not edit. -->
-
-
 # NAME
 
 pkgstate-generation - native immutable installed-state storage format

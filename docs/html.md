@@ -1,9 +1,8 @@
 # HTML documentation
 
 The `html_docs` Meson feature builds a versioned static documentation tree for
-libpkgstate-posix. The tree is generated from the repository's authoritative Markdown,
-canonical scdoc-derived manual mirrors, public headers, legal notices, and
-Doxygen configuration.
+libpkgstate-posix. The tree is generated from the repository's authoritative Markdown, committed generated manual roff, public
+headers, legal notices, and Doxygen configuration.
 
 Generation is atomic. The checker rejects missing inventory entries, broken or
 escaping local links, leaked source/build paths, and source-format links. The
@@ -13,5 +12,5 @@ installed tree is placed below:
 share/htmldocs/libpkgstate-posix/3.0.0
 ```
 
-HTML output is derived. Edit the Markdown, scdoc, headers, or Doxygen source and
-regenerate; never patch generated HTML.
+HTML output is derived. Edit the Markdown, headers, or Doxygen source and regenerate; never patch
+generated HTML.

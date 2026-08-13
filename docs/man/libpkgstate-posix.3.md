@@ -1,8 +1,5 @@
 % LIBPKGSTATE-POSIX(3) libpkgstate-posix | Version 3.0.0
 
-<!-- Generated from libpkgstate-posix.3.scdoc; do not edit. -->
-
-
 # NAME
 
 libpkgstate-posix - POSIX immutable-generation storage for libpkgstate

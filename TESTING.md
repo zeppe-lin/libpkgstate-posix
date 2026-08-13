@@ -1,4 +1,4 @@
-# Qualification
+# Testing libpkgstate-posix
 
 The test tree separates evidence by role:
 
@@ -9,7 +9,7 @@ The test tree separates evidence by role:
 - `header` compiles every public header and the umbrella independently;
 - `contract` checks architecture, ABI, release, repository, documentation,
   pkg-config, style, and test-layout invariants; and
-- `tool` qualifies the installed-state diagnostic client as a read-only
+- `cli` qualifies the installed-state diagnostic client as a read-only
   consumer of an existing store.
 
 Integration qualification covers exact target binding, canonical empty

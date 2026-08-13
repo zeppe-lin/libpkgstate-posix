@@ -1,0 +1,27 @@
+.\" Generated from docs/man/pkgstate-generation.5.md; do not edit.
+.\"
+.TH "PKGSTATE\-GENERATION" "5" "" "libpkgstate\-posix" "Version 3.0.0"
+.SH NAME
+pkgstate\-generation \- native immutable installed\-state storage format
+.SH DESCRIPTION
+A canonical generation store contains:
+.PP
+\f[B]binding\f[R] One canonical record naming the store\[aq]s exact \f[B]state_target_binding\f[R].
+.PP
+\f[B]current\f[R] The name of the selected immutable generation.
+.PP
+\f[B]generations/\f[R] Complete immutable generation directories.
+.PP
+Each generation contains one canonical binary snapshot record encoded by \f[B]pkgstate_generation_codec\f[R](3).
+The format stores all package source records, installed control, installation receipts, complete recorded object metadata, manifests, publication references, and target binding required to reconstruct the exact native snapshot and verify every state\-owned identity.
+.SH VERSION
+The current format version is 1 and its public identifier is \f[B]libpkgstate\-generation\-v1\f[R].
+Only canonical generation 1 is recognized; every other version is rejected.
+Migration between storage versions belongs to a separate explicit tool.
+.SH DURABILITY
+Publication creates and synchronizes a complete generation before atomically replacing and synchronizing the current selector.
+Generation directories are immutable after selection.
+.SH VALIDATION
+Readers reject malformed lengths, unknown enum values, invalid UTF\-8\-independent identifier bytes, duplicate normalized values, identity mismatches, target mismatches, trailing data, and selector traversal.
+.SH SEE ALSO
+\f[B]pkgstate_generation_codec\f[R](3), \f[B]pkgstate_canonical_generation_store\f[R](3), \f[B]pkgstate\-check\f[R](1)
